@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Farhang Naderi - PhD Student at URI, PX4 Maintainer, Co-founder of Caretta Robotics. Specializing in autonomous underwater vehicles, learning-based control, and aerial robotics.">
+    <meta name="keywords" content="Farhang Naderi, Robotics, PX4, Caretta Robotics, URI, AUV, Drones, ROS2">
+    <title>Farhang Naderi | Robotics Researcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050505;
+            --surface: #0a0a0a;
+            --surface-hover: #111111;
+            --border: #222222;
+            --border-hover: #333333;
+            --text: #eeeeee;
+            --text-secondary: #888888;
+            --text-dim: #555555;
+            --accent: #ffffff;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 56px;
+        }
+
+        .logo {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: -0.5px;
+            color: var(--text);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .hero-left {
+            max-width: 800px;
+        }
+
+        .hero-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero-label::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background: var(--text);
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            color: var(--text-secondary);
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 32px;
+        }
+
+        .hero-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .hero-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            font-family: var(--font-mono);
+        }
+
+        .hero-links a:hover {
+            background: var(--surface);
+            border-color: var(--text-secondary);
+        }
+
+        .hero-links a.primary {
+            background: var(--text);
+            color: var(--bg);
+            border-color: var(--text);
+        }
+
+        .hero-links a.primary:hover {
+            background: #ddd;
+        }
+
+        /* Stats / Highlights (Right side of hero) */
+        .hero-stats {
+            display: grid;
+            grid-template-columns: 1fr;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: var(--surface);
+        }
+
+        .stat-item {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        /* Section Base */
+        section {
+            padding: 64px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-header {
+            margin-bottom: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+
+        /* Grid Layouts - Dense Factory Style */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: 4px;
+            transition: border-color 0.2s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            border-color: var(--text-dim);
+        }
+
+        .card.wide {
+            grid-column: span 2;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card-icon {
+            color: var(--text-dim);
+            font-family: var(--font-mono);
+            font-size: 1.2rem;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            flex-grow: 1;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tag {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--text-secondary);
+        }
+
+        /* Tech Stack Table Style */
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .stack-col {
+            padding: 24px;
+            border-right: 1px solid var(--border);
+        }
+
+        .stack-col:last-child {
+            border-right: none;
+        }
+
+        .stack-col h4 {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .stack-col ul {
+            list-style: none;
+        }
+
+        .stack-col li {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .stack-col li::before {
+            content: "→";
+            margin-right: 8px;
+            color: var(--text-dim);
+            font-size: 0.8em;
+        }
+
+        /* Experience List - Compact */
+        .experience-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            border: 1px solid var(--border);
+        }
+
+        .experience-row {
+            display: grid;
+            grid-template-columns: 150px 1fr 150px;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            align-items: center;
+            background: var(--surface);
+            transition: background 0.2s;
+        }
+
+        .experience-row:hover {
+            background: var(--surface-hover);
+        }
+
+        .experience-row:last-child {
+            border-bottom: none;
+        }
+
+        .exp-date {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        .exp-role h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .exp-role p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .exp-company {
+            text-align: right;
+            font-size: 0.9rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            padding: 48px 0;
+            border-top: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card.wide {
+                grid-column: span 1;
+            }
+
+            .stack-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .stack-col:nth-child(2) {
+                border-right: none;
+            }
+
+            .stack-col:nth-child(3), .stack-col:nth-child(4) {
+                border-top: 1px solid var(--border);
+            }
+
+            .experience-row {
+                grid-template-columns: 1fr;
+                gap: 8px;
+                text-align: left;
+            }
+
+            .exp-company {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .stack-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stack-col {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .stack-col:last-child {
+                border-bottom: none;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 24px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="container nav-inner">
+        <div class="logo">FARHANG NADERI</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#research">Research</a>
+            <a href="#experience">Experience</a>
+            <a href="https://github.com/farhangnaderi" target="_blank">GitHub</a>
+        </div>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="container hero-content">
+        <div class="hero-left">
+            <div class="hero-label">PhD Student / Robotics Researcher</div>
+            <h1>
+                Building Intelligent
+                <span>Autonomous Systems.</span>
+            </h1>
+            <p class="hero-description">
+                PhD student at the University of Rhode Island, PX4 Autopilot Maintainer, and Co-founder of Caretta Robotics.
+                Specializing in learning-based control for autonomous underwater vehicles and aerial robotics.
+            </p>
+            <div class="hero-links">
+                <a href="mailto:farhang.nba@gmail.com" class="primary">Get in Touch</a>
+                <a href="https://github.com/farhangnaderi" target="_blank">GitHub</a>
+                <a href="https://linkedin.com/in/farhangnaderi" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-label">Current Role</div>
+                <div class="stat-value">PhD Candidate @ URI</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Open Source</div>
+                <div class="stat-value">PX4 Maintainer</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Startup</div>
+                <div class="stat-value">Co-Founder @ Caretta</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Focus</div>
+                <div class="stat-value">RL & AUV Control</div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="about">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Background</h2>
+            <p class="section-label">01 / ABOUT</p>
+        </div>
+        <div class="bento-grid">
+            <div class="card wide">
+                <div class="card-header">
+                    <h3>Research Focus</h3>
+                    <div class="card-icon">Target</div>
+                </div>
+                <p>
+                    I'm a robotics researcher focused on developing intelligent autonomous systems that can operate
+                    in challenging environments. My work spans from underwater vehicles navigating with sonar-based
+                    terrain reconstruction to aerial drones performing complex maneuvers in GPS-denied conditions.
+                </p>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3>Impact</h3>
+                    <div class="card-icon">Globe</div>
+                </div>
+                <p>
+                    As a maintainer of PX4 Autopilot, I contribute to the global robotics community while advancing
+                    research in learning-based control and perception systems.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="research">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Core Domains</h2>
+            <p class="section-label">02 / RESEARCH</p>
+        </div>
+        <div class="bento-grid">
+            <div class="card wide">
+                <div class="card-header">
+                    <h3>Learning-Based AUV Control</h3>
+                    <div class="card-icon">Waves</div>
+                </div>
+                <p>
+                    Developing reinforcement learning approaches for autonomous underwater vehicle navigation.
+                    Enabling adaptation to dynamic environments with currents and sensor noise.
+                </p>
+                <div class="tags">
+                    <span class="tag">Reinforcement Learning</span>
+                    <span class="tag">AUV</span>
+                    <span class="tag">Adaptive Control</span>
+                    <span class="tag">PyTorch</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3>Sonar Mapping</h3>
+                    <div class="card-icon">Radar</div>
+                </div>
+                <p>
+                    Perception systems leveraging sonar data for underwater mapping and localization in visually degraded environments.
+                </p>
+                <div class="tags">
+                    <span class="tag">Sonar</span>
+                    <span class="tag">SLAM</span>
+                    <span class="tag">Point Clouds</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3>GPS-Denied Nav</h3>
+                    <div class="card-icon">Compass</div>
+                </div>
+                <p>
+                    Sensor fusion architectures combining UWB, visual odometry, and IMU for precise indoor localization.
+                </p>
+                <div class="tags">
+                    <span class="tag">UWB</span>
+                    <span class="tag">Sensor Fusion</span>
+                    <span class="tag">EKF</span>
+                </div>
+            </div>
+            <div class="card wide">
+                <div class="card-header">
+                    <h3>Aerial Object Tracking</h3>
+                    <div class="card-icon">Eye</div>
+                </div>
+                <p>
+                    Real-time object detection and tracking systems for drones using deep learning, integrated
+                    with PX4 through ROS2 for autonomous following.
+                </p>
+                <div class="tags">
+                    <span class="tag">Computer Vision</span>
+                    <span class="tag">CNN</span>
+                    <span class="tag">ROS2</span>
+                    <span class="tag">PX4</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="stack">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">The Stack</h2>
+            <p class="section-label">03 / TECHNOLOGY</p>
+        </div>
+        <div class="stack-grid">
+            <div class="stack-col">
+                <h4>Frameworks</h4>
+                <ul>
+                    <li>ROS2 / MAVROS</li>
+                    <li>PX4 Autopilot</li>
+                    <li>PyTorch</li>
+                    <li>TensorFlow</li>
+                </ul>
+            </div>
+            <div class="stack-col">
+                <h4>Simulation</h4>
+                <ul>
+                    <li>Gazebo</li>
+                    <li>MuJoCo</li>
+                    <li>AirSim</li>
+                    <li>Isaac Sim</li>
+                </ul>
+            </div>
+            <div class="stack-col">
+                <h4>Hardware</h4>
+                <ul>
+                    <li>Pixhawk / PX4</li>
+                    <li>Jetson Orin</li>
+                    <li>Raspberry Pi CM4</li>
+                    <li>UWB Systems</li>
+                </ul>
+            </div>
+            <div class="stack-col">
+                <h4>DevOps</h4>
+                <ul>
+                    <li>Docker</li>
+                    <li>GitHub Actions</li>
+                    <li>CI/CD Pipelines</li>
+                    <li>Linux / RTOS</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="experience">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Journey</h2>
+            <p class="section-label">04 / EXPERIENCE</p>
+        </div>
+        <div class="experience-grid">
+            <div class="experience-row">
+                <div class="exp-date">2022 - Present</div>
+                <div class="exp-role">
+                    <h4>PhD Student & RA</h4>
+                    <p>Research on AUV control & sonar perception</p>
+                </div>
+                <div class="exp-company">URI SOS Lab</div>
+            </div>
+            <div class="experience-row">
+                <div class="exp-date">2021 - Present</div>
+                <div class="exp-role">
+                    <h4>PX4 Maintainer</h4>
+                    <p>Core maintainer for flight control software</p>
+                </div>
+                <div class="exp-company">Dronecode</div>
+            </div>
+            <div class="experience-row">
+                <div class="exp-date">2020 - Present</div>
+                <div class="exp-role">
+                    <h4>Co-founder & CTO</h4>
+                    <p>Autonomous vehicles for industrial apps</p>
+                </div>
+                <div class="exp-company">Caretta Robotics</div>
+            </div>
+            <div class="experience-row">
+                <div class="exp-date">2021 - 2022</div>
+                <div class="exp-role">
+                    <h4>Software Engineer</h4>
+                    <p>Swarm coordination & safety systems</p>
+                </div>
+                <div class="exp-company">Firefly Shows</div>
+            </div>
+            <div class="experience-row">
+                <div class="exp-date">2019 - 2021</div>
+                <div class="exp-role">
+                    <h4>MSc Mechatronics</h4>
+                    <p>Drone speed radar & PX4 customization</p>
+                </div>
+                <div class="exp-company">EMU</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container footer-content">
+        <div class="footer-left">
+            FARHANG NADERI &copy; 2025 / RHODE ISLAND, USA
+        </div>
+        <div class="footer-links">
+            <a href="https://github.com/farhangnaderi" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/farhangnaderi" target="_blank">LinkedIn</a>
+            <a href="https://twitter.com/ffaarrhhaanngg" target="_blank">X / Twitter</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
