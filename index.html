@@ -118,7 +118,8 @@
             letter-spacing: 0.5px;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover,
+        .nav-links a.active {
             color: var(--accent-cyan);
         }
 
@@ -852,6 +853,36 @@
         } else {
             nav.classList.remove('scrolled');
         }
+    });
+
+    // Scroll Spy
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '-50% 0px -50% 0px', // Active when section is in middle of screen
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Remove active class from all links
+                navLinks.forEach(link => link.classList.remove('active'));
+                
+                // Add active class to corresponding link
+                const id = entry.target.getAttribute('id');
+                const matchingLink = document.querySelector(`.nav-links a[href="#${id}"]`);
+                if (matchingLink) {
+                    matchingLink.classList.add('active');
+                }
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => {
+        observer.observe(section);
     });
 </script>
 
