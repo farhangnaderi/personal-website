@@ -15,17 +15,17 @@
             --bg: #242834;
             --accent-cyan: #00FFFF;
             --accent-purple: #7D53FF;
-            
+
             /* Derived vars */
             --surface: #2A2F3D; /* Slightly lighter than #242834 for contrast */
             --surface-hover: #313646;
             --border: #7D53FF; /* Purple borders as primary structural color */
             --border-hover: #00FFFF; /* Cyan on hover */
-            
+
             --text: #ffffff;
             --text-secondary: #A7B0C0; /* Silver - replaces #e0e0e0 */
             --text-dim: #8F9BAA; /* Slate Silver - replaces #a0a0a0 */
-            
+
             --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
         }
@@ -823,10 +823,10 @@
             <div class="experience-row">
                 <div class="exp-date">2019 - 2021</div>
                 <div class="exp-role">
-                    <h4>MSc Mechatronics</h4>
+                    <h4>MSc Electrical Engineer</h4>
                     <p>Drone speed radar & PX4-Autopilot customization</p>
                 </div>
-                <div class="exp-company">EMU</div>
+                <div class="exp-company">Eastern Mediterranean University</div>
             </div>
         </div>
     </div>
@@ -872,7 +872,7 @@
             if (entry.isIntersecting) {
                 // Remove active class from all links
                 navLinks.forEach(link => link.classList.remove('active'));
-                
+
                 // Add active class to corresponding link
                 const id = entry.target.getAttribute('id');
                 const matchingLink = document.querySelector(`.nav-links a[href="#${id}"]`);
