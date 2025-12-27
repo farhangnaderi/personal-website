@@ -8,7 +8,7 @@
     <title>Farhang Naderi | Robotics Researcher</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             /* Palette from image */
@@ -27,6 +27,7 @@
             --text-dim: #8F9BAA; /* Slate Silver - replaces #a0a0a0 */
             
             --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
             --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
         }
 
@@ -46,6 +47,11 @@
             font-family: var(--font-sans);
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
+        }
+
+        /* Headings */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
         }
 
         .container {
@@ -75,10 +81,10 @@
         }
 
         .logo {
-            font-family: var(--font-sans);
-            font-weight: 200; /* Extra Light for elegance */
+            font-family: var(--font-heading);
+            font-weight: 300; /* Light weight looks great on Space Grotesk */
             font-size: 1.8rem;
-            letter-spacing: 4px; /* Wide tracking = Elegant */
+            letter-spacing: 1px; /* Tighter tracking for Space Grotesk */
             color: var(--text); /* White usually looks more elegant than accent for thin fonts, but can use accent if preferred */
             transition: all 0.3s ease;
             text-decoration: none;
